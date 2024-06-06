@@ -1,0 +1,38 @@
+.nav-link {
+  position: relative;
+  left: 250%;
+  font-size: 25px;
+}
+
+.nav-link-1 {
+  position: relative;
+  left: 650%;
+  top: 8px;
+  font-size: 25px;
+  text-decoration: none;
+}
+
+.nav-name p {
+  position: relative;
+  left: 100%;
+  font-size: 25px;
+  text-transform: uppercase;
+  color: #ffff;
+}
+
+.nav-link-2 {
+  position: relative;
+  left: 350%;
+  top: 8px;
+  font-size: 25px;
+  text-decoration: none;
+}
+
+.user-icon img {
+  padding: 0;
+  margin: 0;
+  position: relative;
+  width: 50px;
+  height: 50px;
+  left: 1700%;
+}
