@@ -1,0 +1,70 @@
+.item-template{
+  background-color: transparent;
+  border-color: black;
+  border-style: solid;
+  border-radius: 30px;
+  width: 320px;
+  height: 320px;
+  padding-bottom: 0;
+}
+.item-template img{
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  left: 35px;
+  border-radius: 20px;
+  border: 1px solid black;
+  top: 25px;
+}
+.item-template p{
+  text-transform: uppercase;
+  font-size: 22px;
+  position: absolute;
+  bottom: -5px;
+  padding: 0;
+  left: 90px;
+}
+.item-template button {
+  width: 150px;
+  height: 50px;
+  font-size: 30px;
+  position: relative;
+  padding-bottom: 50px;
+  padding-top: 5px;
+  background-color: #28242c;
+  border: 2px solid #9fdc4a;
+  color: #9fdc4a;
+  text-transform: uppercase;
+  top: 385px;
+  left: 82px;
+}
+.item-template button:hover{
+  background-color: #9fdc4a;
+  color: #28242c;
+  border: 2px solid #28242c;
+}
+.input-number-grams {
+  position: relative;
+  top: 295px;
+  left: 58px;
+  height: 30px;
+}
+
+.calories-per-100 {
+  position: relative;
+  top: 235px;
+  left: 58px;
+}
+.enter-your-grams{
+  position: relative;
+  top: 232px;
+  left: -35px;
+  font-size: 25px;
+  text-transform: uppercase;
+}
+.g{
+  position: relative;
+  top: 200px;
+  font-size: 25px;
+  left:250px;
+}
