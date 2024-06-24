@@ -13,6 +13,7 @@ import { MenuItem1Component } from './menu-item-1/menu-item-1.component';
 import { MenuItem2Component } from './menu-item-2/menu-item-2.component';
 import {FormsModule} from "@angular/forms";
 import { CalorieCounterComponent } from './calorie-counter/calorie-counter.component';
+import { CalorieShowComponent } from './calorie-show/calorie-show.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +25,8 @@ import { CalorieCounterComponent } from './calorie-counter/calorie-counter.compo
     MenuItemComponent,
     MenuItem1Component,
     MenuItem2Component,
-    CalorieCounterComponent
+    CalorieCounterComponent,
+    CalorieShowComponent
   ],
     imports: [
         BrowserModule,
