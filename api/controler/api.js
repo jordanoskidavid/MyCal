@@ -127,6 +127,65 @@ app.post('/signin', async (req, res) => {
       res.status(500).json({ message: 'Error signing in' });
     }
   });
+  // Endpoint za vnes na hrana
+app.post('/enterFood', async (req, res) => {
+  const { foodName, caloriesConsumed } = req.body;
+
+  try {
+    // constanta username
+    const username = req.user.username;
+
+    // Baranje na korisnik so username
+    const user = await User.findOne({ username });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Vnes na hrana za denesen datum
+    user.dailyEntries.push({ foodName, caloriesConsumed });
+    await user.save();
+
+    res.status(200).json({ message: 'Food entered successfully' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Error entering food item' });
+  }
+});
+
+// Endpoint za prikaz na dnevni kalorii
+app.get('/showDailyIntake', async (req, res) => {
+  try {
+//konstanta username od baranje
+    const username = req.user.username;
+
+    // pronaoganje na korisnik so username
+    const user = await User.findOne({ username });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Presmetka na dvenen vnes
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const todaysEntry = user.dailyEntries.find(entry => {
+      return entry.date.getTime() === today.getTime();
+    });
+
+    if (!todaysEntry) {
+      return res.status(200).json({ caloriesConsumed: 0 });
+    }
+
+    const totalCalories = todaysEntry.caloriesConsumed;
+
+    res.status(200).json({ caloriesConsumed: totalCalories });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Error retrieving daily calories' });
+  }
+});
 
 
 
