@@ -1,19 +1,53 @@
+// index.js
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = 3000;
 
-mongoose.connect('mongodb://localhost:27017/mydatabase', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-});
-
-mongoose.connection.once('open', () => {
-    console.log('Connected to MongoDB');
-});
-
-app.use(cors());
+// Middleware
 app.use(bodyParser.json());
+app.use(cors());
+
+// MongoDB connection
+mongoose.connect('mongodb://localhost:27017/caloriesApp')
+    .then(() => console.log('MongoDB connected'))
+    .catch(err => console.log(err));
+
+// Define a schema and model for the data
+const caloriesSchema = new mongoose.Schema({
+    grams: Number,
+    totalCalories: Number
+});
+
+const Calories = mongoose.model('Calories', caloriesSchema);
+// Define routes
+//adding calories
+app.post('/api/saveCalories', (req, res) => {
+    const newCalories = new Calories(req.body);
+    newCalories.save()
+        .then(calories => res.json(calories))
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+//deleting the calories
+app.delete('/api/deleteAllCalories', async (req, res) => {
+    try {
+        await Calories.deleteMany({});
+        res.status(200).json({ message: 'All calories deleted successfully' });
+    } catch (error) {
+        res.status(500).json({ message: 'Failed to delete calories', error: error.message });
+    }
+});
+
+app.get('/api/getAllCalories', (req, res) => {
+    Calories.find({})
+        .then(calories => res.json(calories))
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
+
+app.listen(3000, () => {
+    console.log('Server is running on port 3000');
+});
