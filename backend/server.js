@@ -47,6 +47,16 @@ app.get('/api/getAllCalories', (req, res) => {
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
+// Route to calculate total sum of calories
+app.get('/api/calculateTotalCalories', async (req, res) => {
+    try {
+        const calories = await Calories.find({});
+        const totalCalories = calories.reduce((sum, calorie) => sum + calorie.totalCalories, 0);
+        res.status(200).json({ totalCalories });
+    } catch (error) {
+        res.status(500).json({ message: 'Failed to calculate total calories', error: error.message });
+    }
+});
 
 app.listen(3000, () => {
     console.log('Server is running on port 3000');
